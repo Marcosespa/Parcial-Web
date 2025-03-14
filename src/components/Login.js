@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import imgBanner from '../images/img.png';  
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -15,20 +16,30 @@ const Login = () => {
         login: username,
         password,
       });
-      localStorage.setItem('token', response.data.token); 
       navigate('/robots'); 
     } catch (err) {
-      setError('Credenciales incorrectas');
+      setError('Error de autenticación. Revise sus credenciales.');
     }
   };
 
+  const handleCancel = () => {
+    setUsername('');
+    setPassword('');
+    setError('');
+  };
+
   return (
-    <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-      <div className="card p-4" style={{ width: '400px' }}>
-        <h2 className="text-center mb-4">Iniciar Sesión</h2>
+    <div className="container d-flex flex-column align-items-center justify-content-center" style={{ height: "100vh" }}>
+      
+      <img src={imgBanner} alt="Banner de robots" />
+
+      <div className="card p-4 shadow-lg" style={{ width: "500px", marginTop: "-20px" }}>
+        <h2 className="text-center mb-3">Adopta un Robot con Robot Lovers!</h2>
+        <h4 className="text-center mb-4">Inicio de sesión</h4>
+
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="username" className="form-label">Usuario</label>
+            <label htmlFor="username" className="form-label fw-bold">Nombre de usuario</label>
             <input
               type="text"
               className="form-control"
@@ -38,8 +49,9 @@ const Login = () => {
               required
             />
           </div>
+
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Contraseña</label>
+            <label htmlFor="password" className="form-label fw-bold">Contraseña</label>
             <input
               type="password"
               className="form-control"
@@ -49,10 +61,19 @@ const Login = () => {
               required
             />
           </div>
-          {error && <div className="alert alert-danger">{error}</div>}
-          <button type="submit" className="btn btn-primary w-100">Iniciar Sesión</button>
+
+          {error && <div className="text-danger text-center fw-bold mb-3">{error}</div>}
+
+          <div className="d-flex justify-content-between">
+            <button type="submit" className="btn btn-primary w-50 me-2">Ingresar</button>
+            <button type="button" className="btn btn-danger w-50" onClick={handleCancel}>Cancelar</button>
+          </div>
         </form>
       </div>
+
+      <p className="text-center mt-4 text-muted">
+        Contact us: +57 231421421 - info@robot-lovers.com - @robot-lovers
+      </p>
     </div>
   );
 };
