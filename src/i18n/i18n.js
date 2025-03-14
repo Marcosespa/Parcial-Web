@@ -4,6 +4,10 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
+      adopta:"Adopt a Robot with Robot Lovers",
+      iniciosesion:"login",
+      nombre_persona:"User Name",
+      contrasenia:"Password",
       listado_robots: "List of Robots",
       nombre: "Name",
       modelo: "Model",
@@ -14,6 +18,10 @@ const resources = {
   },
   es: {
     translation: {
+      adopta:"Adopta un Robot con Robot Lovers!",
+      iniciosesion:"Inicio de sesion",
+      nombre_persona:"Nombre de usuario",
+      contrasenia:"Contraseña",
       listado_robots: "Listado de Robots",
       nombre: "Nombre",
       modelo: "Modelo",
@@ -26,8 +34,8 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: "es",
-  fallbackLng: "en",
+  lng: "en",
+  fallbackLng: "es",
   interpolation: { escapeValue: false }
 });
 

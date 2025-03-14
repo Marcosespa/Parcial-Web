@@ -6,10 +6,10 @@ import { useTranslation } from "react-i18next";
 import i18n from "../i18n/i18n";
 
 const RobotList = () => {
+  const {t,i18n} = useTranslation();
   const [robots, setRobots] = useState([]);
   const [selectedRobot, setSelectedRobot] = useState(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
-  const {t,i18n} = useTranslation();
 
 
   useEffect(() => {
@@ -31,9 +31,11 @@ const RobotList = () => {
 
   return (
     <div className="container mt-4">
+      <h2 className="text-center mb-3">{t("adopta")}</h2>
+
       <img src={imgBanner}/>
 
-      <h2 className="text-center mb-3">Adopta un Robot con Robot Lovers!</h2>
+      <h2 className="text-center mb-3">{t("listado_robots")}</h2>
 
       <div className="row">
         <div className="col-md-8">
@@ -41,9 +43,9 @@ const RobotList = () => {
             <thead className="table-dark">
               <tr>
                 <th>ID</th>
-                <th>Nombre</th>
-                <th>Modelo</th>
-                <th>Empresa Fabricante</th>
+                <th>{t("nombre")}</th>
+                <th>{t("modelo")}</th>
+                <th>{t("fabricante")}</th>
               </tr>
             </thead>
             <tbody>
@@ -70,8 +72,8 @@ const RobotList = () => {
                 className="img-fluid rounded"
               />
               <div className="card-body">
-                <p><strong>Año de Fabricación:</strong> {selectedRobot.añoFabricacion}</p>
-                <p><strong>Capacidad de Procesamiento:</strong> {selectedRobot.capacidadProcesamiento}</p>
+                <p><strong>{t("año_fabricacion")}</strong> {selectedRobot.añoFabricacion}</p>
+                <p><strong>{t("capacidad_procesamiento")}</strong> {selectedRobot.capacidadProcesamiento}</p>
                 <p><strong>Humor:</strong> {selectedRobot.humor}</p>
               </div>
             </div>

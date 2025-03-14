@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import imgBanner from '../images/img.png';  
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n/i18n";
 
 const Login = () => {
+  const {t,i18n} = useTranslation();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -34,12 +37,12 @@ const Login = () => {
       <img src={imgBanner} alt="Banner de robots" />
 
       <div className="card p-4 shadow-lg" style={{ width: "500px", marginTop: "-20px" }}>
-        <h2 className="text-center mb-3">Adopta un Robot con Robot Lovers!</h2>
-        <h4 className="text-center mb-4">Inicio de sesión</h4>
+        <h2 className="text-center mb-3">{t("adopta")}</h2>
+        <h4 className="text-center mb-4">{t("iniciosesion")}</h4>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="username" className="form-label fw-bold">Nombre de usuario</label>
+            <label htmlFor="username" className="form-label fw-bold">{t("nombre_persona")}</label>
             <input
               type="text"
               className="form-control"
@@ -51,7 +54,7 @@ const Login = () => {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="password" className="form-label fw-bold">Contraseña</label>
+            <label htmlFor="password" className="form-label fw-bold">{t("contrasenia")}</label>
             <input
               type="password"
               className="form-control"
