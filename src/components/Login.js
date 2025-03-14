@@ -18,7 +18,7 @@ const Login = () => {
       });
       navigate('/robots'); 
     } catch (err) {
-      setError('Error de autenticación. Revise sus credenciales.');
+      setError('Error.');
     }
   };
 

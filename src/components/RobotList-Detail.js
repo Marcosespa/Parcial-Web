@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
 import imgBanner from "../images/img.png"; 
+import { useTranslation } from "react-i18next";
+import i18n from "../i18n/i18n";
 
 const RobotList = () => {
   const [robots, setRobots] = useState([]);
   const [selectedRobot, setSelectedRobot] = useState(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
+  const {t,i18n} = useTranslation();
+
 
   useEffect(() => {
     axios
       .get("http://localhost:3001/robots")
       .then((res) => setRobots(res.data))
-      .catch((err) => console.error(err));
   }, []);
 
   const fetchRobotDetails = async (id) => {
@@ -20,22 +23,19 @@ const RobotList = () => {
     try {
       const response = await axios.get(`http://localhost:3001/robots/${id}`);
       setSelectedRobot(response.data);
-    } catch (error) {
-      console.error(error);
-    } finally {
+
+    }finally {
       setLoadingDetails(false);
     }
   };
 
   return (
     <div className="container mt-4">
-      {/* Imagen superior */}
-      <img src={imgBanner} alt="Banner de robots" className="img-fluid mb-3" style={{ width: "100%" }} />
+      <img src={imgBanner}/>
 
       <h2 className="text-center mb-3">Adopta un Robot con Robot Lovers!</h2>
 
       <div className="row">
-        {/* Tabla de robots */}
         <div className="col-md-8">
           <Table striped bordered hover>
             <thead className="table-dark">
@@ -59,7 +59,6 @@ const RobotList = () => {
           </Table>
         </div>
 
-        {/* Card de detalles del robot seleccionado */}
         <div className="col-md-4">
           {loadingDetails && <p className="text-center">Cargando detalles...</p>}
           {selectedRobot && !loadingDetails && (
@@ -71,16 +70,15 @@ const RobotList = () => {
                 className="img-fluid rounded"
               />
               <div className="card-body">
-                <p><strong>🛠 Año de Fabricación:</strong> {selectedRobot.añoFabricacion}</p>
-                <p><strong>⚡ Capacidad de Procesamiento:</strong> {selectedRobot.capacidadProcesamiento}</p>
-                <p><strong>😊 Humor:</strong> {selectedRobot.humor}</p>
+                <p><strong>Año de Fabricación:</strong> {selectedRobot.añoFabricacion}</p>
+                <p><strong>Capacidad de Procesamiento:</strong> {selectedRobot.capacidadProcesamiento}</p>
+                <p><strong>Humor:</strong> {selectedRobot.humor}</p>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Contacto */}
       <p className="text-center mt-4 text-muted">
         Contact us: +57 3102105253 - info@robot-lovers.com - @robot-lovers
       </p>
